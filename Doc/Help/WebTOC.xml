@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="0c08a52f-8a74-472b-b4b8-a34a41f47a91" Title="PAST" Url="html/8359b921-a603-76b6-add0-acf16c703654.htm">
+    <HelpTOCNode Id="2c45fc3b-7f3f-43b9-a029-4934244b2457" Title="PAST Class" Url="html/3f1de9fc-ce6d-f199-eb57-c70a0695455b.htm">
+      <HelpTOCNode Title="PAST Constructor " Url="html/9b916bd4-68c7-69ae-8182-b97238984a27.htm" />
+      <HelpTOCNode Id="733add0a-8466-4920-b637-92bc3463da04" Title="PAST Methods" Url="html/0781874b-645b-141c-edd7-d2a26ca5b74b.htm">
+        <HelpTOCNode Title="Draw Method " Url="html/d79fb0e8-79cf-a5c7-15ee-fcd82e223360.htm" />
+        <HelpTOCNode Title="Initialize Method " Url="html/55ae5bf0-0e69-70e6-4dec-e5b07f7cd1ae.htm" />
+        <HelpTOCNode Title="LoadContent Method " Url="html/47d21632-baf6-ee80-32d9-393d2e2d3bb0.htm" />
+        <HelpTOCNode Title="UnloadContent Method " Url="html/efe3f442-5f19-46a5-720e-0c30771cbdbe.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/9919ef59-4c2a-8c95-437b-cef2dd77f7ee.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="PAST Properties" Url="html/de4795dd-e423-7d9f-af5d-1bcc40f513c4.htm" />
+      <HelpTOCNode Title="PAST Events" Url="html/36cba48a-6c4f-842b-99d8-89029a35d92c.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="Program Class" Url="html/36f57dcc-2994-b489-8e1d-8ecc7ca66ef7.htm" />
+  </HelpTOCNode>
+</HelpTOC>

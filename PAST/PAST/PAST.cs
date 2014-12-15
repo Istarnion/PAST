@@ -12,13 +12,16 @@ using Microsoft.Xna.Framework.GamerServices;
 namespace PAST
 {
     /// <summary>
-    /// This is the main type for your game
+    /// This is the main class for the game
     /// </summary>
     public class PAST : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        SpriteBatch batch;
 
+        /// <summary>
+        /// Constructor sets up the GraphicsDeviceManager, and sets the content directory
+        /// </summary>
         public PAST()
             : base()
         {
@@ -46,7 +49,7 @@ namespace PAST
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            batch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="Draw method" Url="html/d79fb0e8-79cf-a5c7-15ee-fcd82e223360.htm" />
+  <HelpKINode Title="Initialize method" Url="html/55ae5bf0-0e69-70e6-4dec-e5b07f7cd1ae.htm" />
+  <HelpKINode Title="LoadContent method" Url="html/47d21632-baf6-ee80-32d9-393d2e2d3bb0.htm" />
+  <HelpKINode Title="PAST class">
+    <HelpKINode Title="PAST Class" Url="html/3f1de9fc-ce6d-f199-eb57-c70a0695455b.htm" />
+    <HelpKINode Title="about PAST class" Url="html/3f1de9fc-ce6d-f199-eb57-c70a0695455b.htm" />
+    <HelpKINode Title="constructor" Url="html/9b916bd4-68c7-69ae-8182-b97238984a27.htm" />
+    <HelpKINode Title="events" Url="html/36cba48a-6c4f-842b-99d8-89029a35d92c.htm" />
+    <HelpKINode Title="methods" Url="html/0781874b-645b-141c-edd7-d2a26ca5b74b.htm" />
+    <HelpKINode Title="properties" Url="html/de4795dd-e423-7d9f-af5d-1bcc40f513c4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PAST namespace" Url="html/8359b921-a603-76b6-add0-acf16c703654.htm" />
+  <HelpKINode Title="PAST.Draw method" Url="html/d79fb0e8-79cf-a5c7-15ee-fcd82e223360.htm" />
+  <HelpKINode Title="PAST.Initialize method" Url="html/55ae5bf0-0e69-70e6-4dec-e5b07f7cd1ae.htm" />
+  <HelpKINode Title="PAST.LoadContent method" Url="html/47d21632-baf6-ee80-32d9-393d2e2d3bb0.htm" />
+  <HelpKINode Title="PAST.PAST class" Url="html/3f1de9fc-ce6d-f199-eb57-c70a0695455b.htm" />
+  <HelpKINode Title="PAST.PAST constructor" Url="html/9b916bd4-68c7-69ae-8182-b97238984a27.htm" />
+  <HelpKINode Title="PAST.Program class" Url="html/36f57dcc-2994-b489-8e1d-8ecc7ca66ef7.htm" />
+  <HelpKINode Title="PAST.UnloadContent method" Url="html/efe3f442-5f19-46a5-720e-0c30771cbdbe.htm" />
+  <HelpKINode Title="PAST.Update method" Url="html/9919ef59-4c2a-8c95-437b-cef2dd77f7ee.htm" />
+  <HelpKINode Title="Program class">
+    <HelpKINode Title="Program Class" Url="html/36f57dcc-2994-b489-8e1d-8ecc7ca66ef7.htm" />
+    <HelpKINode Title="about Program class" Url="html/36f57dcc-2994-b489-8e1d-8ecc7ca66ef7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnloadContent method" Url="html/efe3f442-5f19-46a5-720e-0c30771cbdbe.htm" />
+  <HelpKINode Title="Update method" Url="html/9919ef59-4c2a-8c95-437b-cef2dd77f7ee.htm" />
+</HelpKI>
