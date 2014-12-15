@@ -1,12 +1,57 @@
-*.class
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+#Visual Studio files
+*.pidb
+*.userprefs
+*.[Oo]bj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
 
-# Package Files #
-*.jar
-*.war
-*.ear
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+#Project files
+[Bb]uild/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+#monodroid private beta
+monodroid*.msi
+/CompiledContent/Android/IgnoreMe.dll
+/CompiledContent/OSX/IgnoreMe.dll
+/CompiledContent/Windows8/IgnoreMe.dll
+/CompiledContent/Windows/IgnoreMe.dll
+*.cachefile
+*.dll
