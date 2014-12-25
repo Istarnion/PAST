@@ -7,19 +7,19 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
-using PAST.Code.GameStates;
+using PAST_windows.Code.GameStates;
 #endregion
 
-namespace PAST.Code
+namespace PAST_windows.Code
 {
 	/// <summary>
 	/// This is the main class for the game
 	/// </summary>
-	public class PAST : Game
+	public class Past : Game
 	{
 
 		private StateManager stateManager;
-		SpriteFont spritefont;
+
 		GraphicsDeviceManager graphics;
 		SpriteBatch batch;
 
@@ -27,10 +27,10 @@ namespace PAST.Code
 		/// Constructor sets up the GraphicsDeviceManager, sets the content directory,
 		/// and initializes the stateManager.
 		/// </summary>
-		public PAST()
+		public Past()
 			: base()
 		{
-			stateManager = new StateManager();
+			stateManager = new StateManager(this);
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 		}
@@ -43,7 +43,7 @@ namespace PAST.Code
 		/// </summary>
 		protected override void Initialize()
 		{
-			stateManager.Push(new MenuState(stateManager));
+			stateManager.Push(new MenuState(stateManager, Content));
 
 			base.Initialize();
 		}
@@ -56,8 +56,6 @@ namespace PAST.Code
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			batch = new SpriteBatch(GraphicsDevice);
-
-			spritefont = Content.Load<SpriteFont>("Console");
 		}
 
 		/// <summary>
@@ -91,10 +89,9 @@ namespace PAST.Code
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.CornflowerBlue);
+			GraphicsDevice.Clear(Color.Black);
 
 			batch.Begin();
-			batch.DrawString(spritefont, "DEBUG", new Vector2(100, 100), Color.Black);
 			stateManager.Draw(gameTime, batch);
 			batch.End();
 

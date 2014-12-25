@@ -1,0 +1,5 @@
+Screen size = ?x?
+Tile size = 64 x 64
+Framerate = 60FPS
+
+Mapeditor = Tiled/custom

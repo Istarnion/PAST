@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Squared.Tiled.Tileset" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Squared.Tiled.Tileset.TilePropertyList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Code\Tiled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAgwAEAIQAAAAIAAAAAACQAAAAAABEAAAIAAQAAACA=</HashCode>
+      <FileName>Code\Tiled.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Squared.Tiled.Layer" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="Squared.Tiled.Layer.TileInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Code\Tiled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAlAAgBAAAIgECAAAAgEQAAAAAAAIAAAEAAQACAAA=</HashCode>
+      <FileName>Code\Tiled.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Squared.Tiled.ObjectGroup" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAkAAABAAAAgAAAAAAAEQAAAAAAAEAAAAAAAACYAA=</HashCode>
+      <FileName>Code\Tiled.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Squared.Tiled.Object" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAEABQAAAgAAAAAAAEQAAAAAABAAAAIAAAACYAA=</HashCode>
+      <FileName>Code\Tiled.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Squared.Tiled.Map" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAkAAABAAAAgAAAAAAAGAAAAAAAAAEAAAAAQACAAA=</HashCode>
+      <FileName>Code\Tiled.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
