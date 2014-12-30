@@ -63,7 +63,8 @@ namespace PAST_windows.Code.GameStates
 			// Select
 			if (state.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 			{
-				manager.Pop();
+				if (selectedOption == 0) manager.Push(new PlayState(manager, content));
+				else manager.Pop();
 			}
 
 			oldState = state;

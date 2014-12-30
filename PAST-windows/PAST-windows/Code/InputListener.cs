@@ -7,9 +7,9 @@ namespace PAST_windows.Code
 {
 	interface InputListener
 	{
-		public void PausePress();
-		public void FireButtonPress();
-		public void FireButtonRelease();
-		public void ChangeLaserPress();
+		void PausePress();
+		void FireButtonPress();
+		void FireButtonRelease();
+		void ChangeLaserPress();
 	}
 }

@@ -35,13 +35,18 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Code\GameObjects\Robot.cs" />
     <Compile Include="Code\GameStates\MenuState.cs" />
     <Compile Include="Code\GameStates\PlayState.cs" />
     <Compile Include="Code\GameStates\State.cs" />
     <Compile Include="Code\GameStates\StateManager.cs" />
+    <Compile Include="Code\Input.cs" />
+    <Compile Include="Code\InputListener.cs" />
     <Compile Include="Code\Past.cs" />
     <Compile Include="Code\Program.cs" />
     <Compile Include="Code\GameObject.cs" />
+    <Compile Include="Code\Room.cs" />
+    <Compile Include="Code\Rooms\RoomGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

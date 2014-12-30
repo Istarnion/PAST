@@ -17,18 +17,24 @@ namespace PAST_windows.Code
 
 		private Vector2 aim;
 
+		private Vector2 mousePos;
+
 		public Input()
 		{
+			listeners = new List<InputListener>(1);
 			prevState = Keyboard.GetState();
 		}
 
 		/// <summary>
 		/// This method should be called before the update to the game logic occurs every frame.
+		/// TODO: Implement gamepad support.
 		/// </summary>
 		public void Update()
 		{
-			KeyboardState state = Keyboard.GetState();
-			Keys[] keysDown = state.GetPressedKeys();
+			// GamePadState gpState = GamePad.GetState(PlayerIndex.One);
+			MouseState mouseState = Mouse.GetState();
+			KeyboardState keyboardState = Keyboard.GetState();
+			Keys[] keysDown = keyboardState.GetPressedKeys();
 
 			int mx, my, ax, ay;
 
@@ -54,25 +60,46 @@ namespace PAST_windows.Code
 
 			mx = 0;
 			my = 0;
-			mx += (state.IsKeyDown(Keys.D) ? 1 : 0);
-			mx -= (state.IsKeyDown(Keys.A) ? 1 : 0);
-			my += (state.IsKeyDown(Keys.W) ? 1 : 0);
-			my -= (state.IsKeyDown(Keys.S) ? 1 : 0);
+			mx += (keyboardState.IsKeyDown(Keys.D) ? 1 : 0);
+			mx -= (keyboardState.IsKeyDown(Keys.A) ? 1 : 0);
+			my += (keyboardState.IsKeyDown(Keys.W) ? 1 : 0);
+			my -= (keyboardState.IsKeyDown(Keys.S) ? 1 : 0);
 			movement = new Vector2(mx, my);
 			if (mx != 0 && my != 0) movement.Normalize();
 
 			ax = 0;
 			ay = 0;
-			ax += (state.IsKeyDown(Keys.Right) ? 1 : 0);
-			ax -= (state.IsKeyDown(Keys.Left) ? 1 : 0);
-			ay += (state.IsKeyDown(Keys.Up) ? 1 : 0);
-			ay -= (state.IsKeyDown(Keys.Down) ? 1 : 0);
+			ax += (keyboardState.IsKeyDown(Keys.Right)	? 1 : 0);
+			ax -= (keyboardState.IsKeyDown(Keys.Left)	? 1 : 0);
+			ay += (keyboardState.IsKeyDown(Keys.Up)		? 1 : 0);
+			ay -= (keyboardState.IsKeyDown(Keys.Down)	? 1 : 0);
 			aim = new Vector2(ax, ay);
 			if (ax != 0 && ay != 0) aim.Normalize();
 
+			mousePos = new Vector2(mouseState.Position.X, mouseState.Position.Y);
 
-			prevState = state;
+			prevState = keyboardState;
 		}
 
+		public Vector2 GetMovement()
+		{
+			return movement;
+		}
+
+		public Vector2 GetAim(Vector2 pos)
+		{
+			if (pos == null) return aim;
+			else return (mousePos - pos);
+		}
+
+		public void AddListener(InputListener il)
+		{
+			listeners.Add(il);
+		}
+
+		public Vector2 GetMousePos()
+		{
+			return mousePos;
+		}
 	}
 }
