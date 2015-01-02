@@ -35,6 +35,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Code\Animation.cs" />
+    <Compile Include="Code\GameContent.cs" />
     <Compile Include="Code\GameObjects\Robot.cs" />
     <Compile Include="Code\GameStates\MenuState.cs" />
     <Compile Include="Code\GameStates\PlayState.cs" />
@@ -47,6 +49,7 @@
     <Compile Include="Code\GameObject.cs" />
     <Compile Include="Code\Room.cs" />
     <Compile Include="Code\Rooms\RoomGenerator.cs" />
+    <Compile Include="Code\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,11 +16,15 @@ namespace PAST_windows.Code.GameStates
 
 		private Input input;
 
+		private Sprite cursor;
+
 		public PlayState(StateManager manager, ContentManager content) : base(manager, content)
 		{
 			input = new Input();
-			player = new Robot(content.Load<Texture2D>("sprites/player"), input);
+			player = new Robot(input);
 			input.AddListener(this);
+
+			cursor = GameContent.GetSprite("cursor");
 		}
 
 		public override void Update(GameTime time)
@@ -34,7 +38,7 @@ namespace PAST_windows.Code.GameStates
 			player.Draw(time, batch);
 
 			Vector2 mousePos = input.GetMousePos();
-			batch.Draw(base.content.Load<Texture2D>("sprites/cursor"), new Rectangle((int)(mousePos.X - 4), (int)(mousePos.Y - 4), 8, 8), Color.White);
+			cursor.Draw(batch, (int)mousePos.X, (int)mousePos.Y, 8, 8, 0);
 		}
 
 		public override void Resume()
