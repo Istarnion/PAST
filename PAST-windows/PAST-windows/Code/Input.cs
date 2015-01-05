@@ -158,5 +158,10 @@ namespace PAST_windows.Code
 		{
 			return mousePos;
 		}
+
+		public bool IsGamepad()
+		{
+			return gamePad;
+		}
 	}
 }

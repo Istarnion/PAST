@@ -37,8 +37,11 @@ namespace PAST_windows.Code.GameStates
 		{
 			player.Draw(time, batch);
 
-			Vector2 mousePos = input.GetMousePos();
-			cursor.Draw(batch, (int)mousePos.X, (int)mousePos.Y, 8, 8, 0);
+			if (!input.IsGamepad())
+			{
+				Vector2 mousePos = input.GetMousePos();
+				cursor.Draw(batch, (int)mousePos.X, (int)mousePos.Y, 8, 8, 0);
+			}
 		}
 
 		public override void Resume()
