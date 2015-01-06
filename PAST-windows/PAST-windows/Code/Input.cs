@@ -53,6 +53,7 @@ namespace PAST_windows.Code
 
 		private void UpdateGamePad(GamePadState gps)
 		{
+
 			if(gps.IsButtonDown(Buttons.Start) && !prevGPState.IsButtonDown(Buttons.Start))
 			{
 				foreach (InputListener l in listeners) { l.PausePress(); }
@@ -61,16 +62,17 @@ namespace PAST_windows.Code
 			{
 				foreach (InputListener l in listeners) { l.ChangeLaserPress(); }
 			}
-			else if (gps.Triggers.Left > 0.8f && gps.Triggers.Left <= 0.8f)
+			float leftTrigger = gps.Triggers.Left;
+			if (leftTrigger > 0.7f && prevGPState.Triggers.Left <= 0.7f)
 			{
 				foreach (InputListener l in listeners) { l.FireButtonPress(); }
 			}
-			else if (gps.Triggers.Left <= 0.8f && gps.Triggers.Left > 0.8f)
+			if (leftTrigger < 0.7f && prevGPState.Triggers.Left > 0.7f)
 			{
-				foreach (InputListener l in listeners) { l.FireButtonRelease(); }
+				foreach (InputListener l in listeners) { l.FireButtonRelease(); };
 			}
 
-			if(gps.ThumbSticks.Left.Length() > 0.2f)
+			if(gps.ThumbSticks.Left.Length() > 0.1f)
 			{
 				movement = gps.ThumbSticks.Left;
 			}
@@ -80,15 +82,16 @@ namespace PAST_windows.Code
 			}
 
 			Vector2 rightStick = gps.ThumbSticks.Right;
-			if (rightStick.Length() > 0.2f)
+			if (rightStick.Length() > 0.3f)
 			{
-				aim = rightStick;
+				aim = new Vector2(rightStick.X, -rightStick.Y);
 			}
+
+			prevGPState = gps;
 		}
 
 		private void UpdateKeyboard(KeyboardState ks)
 		{
-			// GamePadState gpState = GamePad.GetState(PlayerIndex.One);
 			MouseState mouseState = Mouse.GetState();
 			KeyboardState keyboardState = ks;
 			Keys[] keysDown = keyboardState.GetPressedKeys();
@@ -109,10 +112,11 @@ namespace PAST_windows.Code
 				{
 					foreach (InputListener l in listeners) { l.FireButtonPress(); }
 				}
-				else if (key != Keys.Space && prevState.IsKeyDown(Keys.Space))
-				{
-					foreach (InputListener l in listeners) { l.FireButtonRelease(); }
-				}
+			}
+
+			if(keyboardState.IsKeyUp(Keys.Space) && prevState.IsKeyDown(Keys.Space))
+			{
+				foreach (InputListener l in listeners) { l.FireButtonRelease(); }
 			}
 
 			mx = 0;
@@ -145,8 +149,13 @@ namespace PAST_windows.Code
 
 		public Vector2 GetAim(Vector2 pos)
 		{
-			if (pos == null) return aim;
-			else return (mousePos - pos);
+			if (gamePad) return aim;
+			else
+			{
+				Vector2 v = mousePos - pos;
+				v.Normalize();
+				return v;
+			}
 		}
 
 		public void AddListener(InputListener il)

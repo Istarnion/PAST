@@ -18,6 +18,9 @@ namespace PAST_windows.Code.GameStates
 
 		private Sprite cursor;
 
+		private float cursorRot = 0;
+		private float cursorRotSpeed = 1.5f;
+
 		public PlayState(StateManager manager, ContentManager content) : base(manager, content)
 		{
 			input = new Input();
@@ -31,6 +34,7 @@ namespace PAST_windows.Code.GameStates
 		{
 			input.Update();			// Input must be updated first!
 			player.Update(time);
+			cursorRot += (float)(cursorRotSpeed * time.ElapsedGameTime.TotalSeconds);
 		}
 
 		public override void Draw(GameTime time, SpriteBatch batch)
@@ -40,7 +44,7 @@ namespace PAST_windows.Code.GameStates
 			if (!input.IsGamepad())
 			{
 				Vector2 mousePos = input.GetMousePos();
-				cursor.Draw(batch, (int)mousePos.X, (int)mousePos.Y, 8, 8, 0);
+				cursor.Draw(batch, (int)mousePos.X, (int)mousePos.Y, 10, 10, cursorRot);
 			}
 		}
 

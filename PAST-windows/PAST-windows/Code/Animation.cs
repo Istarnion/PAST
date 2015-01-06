@@ -14,13 +14,13 @@ namespace PAST_windows.Code
 
 		private float frameTime;
 
-		private int lastFrame = 0;
+		private double lastFrame = 0;
 
 		public bool pause { get; set; }
 
 		private int currFrame = 0;
 
-		public Animation(Sprite[] frames, int frameTime)
+		public Animation(Sprite[] frames, float frameTime)
 		{
 			this.frames = frames;
 			this.frameTime = frameTime;
@@ -28,9 +28,10 @@ namespace PAST_windows.Code
 
 		public void Update(GameTime time)
 		{
-			if (lastFrame == 0) lastFrame = time.ElapsedGameTime.Milliseconds;
-			if(!pause && time.ElapsedGameTime.Milliseconds - lastFrame >= frameTime)
+			if (!pause) lastFrame += time.ElapsedGameTime.TotalSeconds;
+			if(lastFrame >= frameTime)
 			{
+				lastFrame = 0;
 				currFrame++;
 				if (currFrame >= frames.Length) currFrame = 0;
 			}

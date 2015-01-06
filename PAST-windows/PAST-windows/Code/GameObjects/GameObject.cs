@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PAST_windows.Code
+namespace PAST_windows.Code.GameObjects
 {
 	class GameObject
 	{
@@ -16,13 +16,15 @@ namespace PAST_windows.Code
 
 		private int yPos { get; set; }
 
+		protected float rotation = 0;
+
 		private bool solid;
 
-		private Texture2D sprite;
+		private Sprite sprite;
 
 		private bool[,] solidityMap;
 
-		public GameObject(Texture2D sprite, bool solid, int xPos, int yPos)
+		public GameObject(Sprite sprite, bool solid, int xPos, int yPos)
 		{
 			this.sprite = sprite;
 			this.solid = solid;
@@ -32,15 +34,17 @@ namespace PAST_windows.Code
 			// Setup the soliditymap
 			if (sprite != null)
 			{
-				Color[] spriteData = new Color[sprite.Width * sprite.Height];
-				sprite.GetData<Color>(spriteData);
+				Texture2D tex = sprite.GetTextureAtlas();
+				Rectangle r = sprite.GetRegion();
+				Color[] spriteData = new Color[tex.Width * tex.Height];
+				tex.GetData<Color>(spriteData);
 
-				solidityMap = new bool[sprite.Width, sprite.Height];
-				for (int i = 0; i < sprite.Height; i++)
+				solidityMap = new bool[r.Width, r.Height];
+				for (int i = 0; i < r.Height; i++)
 				{
-					for (int j = 0; j < sprite.Width; j++)
+					for (int j = 0; j < r.Width; j++)
 					{
-						solidityMap[j, i] = spriteData[i * sprite.Height + j].A == 0;
+						solidityMap[j, i] = spriteData[i * r.Height + j].A == 0;	// This is WRONG. Fix!
 					}
 				}
 			}
@@ -50,7 +54,7 @@ namespace PAST_windows.Code
 			}
 		}
 
-		public GameObject(Texture2D sprite, bool solid, int xPos, int yPos, bool[,] solidityMap)
+		public GameObject(Sprite sprite, bool solid, int xPos, int yPos, bool[,] solidityMap)
 		{
 			this.sprite = sprite;
 			this.solid = solid;
@@ -88,12 +92,12 @@ namespace PAST_windows.Code
 		/// it is enough to invoke this method.
 		/// It draws the object to be square, at the default tile size, no rotation, and no tint.
 		/// </summary>
-		/// <param name="time"></param>
-		/// <param name="batch"></param>
-		/// <param name="camOffset"></param>
+		/// <param name="time">			The current timestamp </param>
+		/// <param name="batch">		The spritebatch that we can talk to </param>
+		/// <param name="camOffset">	The Camera offset we must consider when rendering </param>
 		public void Draw(GameTime time, SpriteBatch batch, Vector2 camOffset)
 		{
-			batch.Draw(sprite, new Rectangle((int)(xPos + camOffset.X), (int)(yPos + camOffset.Y), TILE_SIZE, TILE_SIZE), Color.White);
+			sprite.Draw(batch, (int)(xPos + camOffset.X), (int)(yPos + camOffset.Y), TILE_SIZE, TILE_SIZE, rotation);
 		}
 
 		public GameObject Copy()

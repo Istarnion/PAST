@@ -28,8 +28,18 @@ namespace PAST_windows.Code
 				textureAtlas,
 				new Rectangle(x, y, w, h), region,
 				Color.White,
-				rotation, new Vector2(hw, hh),
+				rotation, new Vector2(region.Width/2, region.Height/2),
 				SpriteEffects.None, 0);
+		}
+
+		public Rectangle GetRegion()
+		{
+			return region;
+		}
+
+		public Texture2D GetTextureAtlas()
+		{
+			return textureAtlas;
 		}
 	}
 }

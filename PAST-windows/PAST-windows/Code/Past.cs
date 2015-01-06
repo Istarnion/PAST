@@ -61,6 +61,9 @@ namespace PAST_windows.Code
 			GameContent.AddSprite("playerTurret", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(0, 0, 63, 64)));
 			GameContent.AddSprite("playerBase_1", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(64, 0, 64, 64)));
 			GameContent.AddSprite("playerBase_2", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(128, 0, 64, 64)));
+			GameContent.AddSprite("redLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(0, 0, 8, 8)));
+			GameContent.AddSprite("blueLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(8, 0, 8, 8)));
+			GameContent.AddSprite("greenLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(16, 0, 8, 8)));
 
 			// Create a new SpriteBatch, which can be used to draw textures.
 			batch = new SpriteBatch(GraphicsDevice);

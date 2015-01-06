@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Code\Animation.cs" />
     <Compile Include="Code\GameContent.cs" />
+    <Compile Include="Code\GameObjects\Laser.cs" />
     <Compile Include="Code\GameObjects\Robot.cs" />
     <Compile Include="Code\GameStates\MenuState.cs" />
     <Compile Include="Code\GameStates\PlayState.cs" />
@@ -46,8 +47,9 @@
     <Compile Include="Code\InputListener.cs" />
     <Compile Include="Code\Past.cs" />
     <Compile Include="Code\Program.cs" />
-    <Compile Include="Code\GameObject.cs" />
-    <Compile Include="Code\Room.cs" />
+    <Compile Include="Code\GameObjects\GameObject.cs" />
+    <Compile Include="Code\RayHitInfo.cs" />
+    <Compile Include="Code\Rooms\Room.cs" />
     <Compile Include="Code\Rooms\RoomGenerator.cs" />
     <Compile Include="Code\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
