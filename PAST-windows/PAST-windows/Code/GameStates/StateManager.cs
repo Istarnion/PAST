@@ -94,5 +94,18 @@ namespace PAST_windows.Code.GameStates
 				states.Peek().Draw(time, batch);
 			}
 		}
+
+		/// <summary>
+		/// Calls the Draw() method of the top element on the stack
+		/// </summary>
+		/// <param name="time"></param>
+		/// <param name="batch"></param>
+		public void DrawBloomed(GameTime time, SpriteBatch batch)
+		{
+			if (states.Count > 0)
+			{
+				states.Peek().DrawBloomed(time, batch);
+			}
+		}
 	}
 }

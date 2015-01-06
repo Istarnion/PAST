@@ -62,7 +62,7 @@
     <Compile Include="sprites\player.png">
       <Name>player</Name>
       <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Processor>MGTextureProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
@@ -70,7 +70,7 @@
     <Compile Include="sprites\cursor.png">
       <Name>cursor</Name>
       <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Processor>MGTextureProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
@@ -78,27 +78,28 @@
     <Compile Include="sprites\lasers.png">
       <Name>lasers</Name>
       <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Processor>MGTextureProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ProcessorParameters_GenerateMipmaps>True</ProcessorParameters_GenerateMipmaps>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="fx\BloomCombine.fx">
       <Name>BloomCombine</Name>
       <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
+      <Processor>MGEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="fx\BloomExtract.fx">
       <Name>BloomExtract</Name>
       <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
+      <Processor>MGEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="fx\GaussianBlur.fx">
       <Name>GaussianBlur</Name>
       <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
+      <Processor>MGEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>

@@ -49,6 +49,13 @@ namespace PAST_windows.Code.GameStates
 		public abstract void Draw(GameTime time, SpriteBatch batch);
 
 		/// <summary>
+		/// Same as Draw(), but a strong bloom effect will be added
+		/// </summary>
+		/// <param name="time"></param>
+		/// <param name="batch"></param>
+		public abstract void DrawBloomed(GameTime time, SpriteBatch batch);
+
+		/// <summary>
 		/// This method is called only when the state
 		/// has been beneath another on the stack, and shall now
 		/// resume controll.

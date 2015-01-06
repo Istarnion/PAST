@@ -90,6 +90,10 @@ namespace PAST_windows.Code.GameStates
 			}
 		}
 
+		public override void DrawBloomed(GameTime time, SpriteBatch batch)
+		{
+		}
+
 		/// <summary>
 		/// Is called when the player returns to the menu after play.
 		/// Maybe implement a fade-in thingy?

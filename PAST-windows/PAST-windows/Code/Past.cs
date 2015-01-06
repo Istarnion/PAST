@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using PAST_windows.Code.GameStates;
+using BloomPostprocess;
 #endregion
 
 namespace PAST_windows.Code
@@ -22,6 +23,9 @@ namespace PAST_windows.Code
 
 		GraphicsDeviceManager graphics;
 		SpriteBatch batch;
+		SpriteBatch bloomedBatch;
+
+		BloomComponent bloom;
 
 		/// <summary>
 		/// Constructor sets up the GraphicsDeviceManager, sets the content directory,
@@ -33,6 +37,10 @@ namespace PAST_windows.Code
 			stateManager = new StateManager(this);
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
+
+			bloom = new BloomComponent(this);
+			Components.Add(bloom);
+			bloom.Settings = new BloomSettings(null, 0.25f, 4, 2, 1, 1.5f, 1);
 		}
 
 		/// <summary>
@@ -67,6 +75,7 @@ namespace PAST_windows.Code
 
 			// Create a new SpriteBatch, which can be used to draw textures.
 			batch = new SpriteBatch(GraphicsDevice);
+			bloomedBatch = new SpriteBatch(GraphicsDevice);
 		}
 
 		/// <summary>
@@ -96,10 +105,13 @@ namespace PAST_windows.Code
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.Black);
 
-			batch.Begin();
+
+			batch.Begin(SpriteSortMode.Texture, BlendState.Additive);
+			bloom.BeginDraw();
+
 			stateManager.Draw(gameTime, batch);
+
 			batch.End();
 
 			base.Draw(gameTime);

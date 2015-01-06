@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PAST_windows.Code.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace PAST_windows.Code.GameObjects
 
 		private float aimDir = 0;
 		private float moveDir = 0;
+
+		private Room room;
 
 		public Robot(Input input)
 		{
@@ -74,7 +77,8 @@ namespace PAST_windows.Code.GameObjects
 
 			if(laser.active)
 			{
-				laser.SetEndPoint(input.GetMousePos());
+				RayHitInfo info = room.Raycast(new Vector2(xPos, yPos), aim);
+				laser.SetEndPoint(info.end);
 				laser.SetStartPoint(new Vector2(xPos, yPos) + aim * 9);
 			}
 		}
@@ -87,7 +91,16 @@ namespace PAST_windows.Code.GameObjects
 			// Draw top
 			turret.Draw(batch, (int)xPos, (int)yPos, 64, 64, aimDir);
 
-			if(laser.active)
+			if (laser.active)
+			{
+				laser.Draw(batch, new Vector2(0, 0));
+			}
+
+		}
+
+		public void DrawBloomed(GameTime time, SpriteBatch batch)
+		{
+			if (laser.active)
 			{
 				laser.Draw(batch, new Vector2(0, 0));
 			}
@@ -106,6 +119,11 @@ namespace PAST_windows.Code.GameObjects
 		public void ChangeLaser()
 		{
 
+		}
+
+		public void SetRoom(Room r)
+		{
+			this.room = r;
 		}
 	}
 }

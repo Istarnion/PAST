@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PAST_windows.Code.GameObjects;
+using PAST_windows.Code.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace PAST_windows.Code.GameStates
 		private float cursorRot = 0;
 		private float cursorRotSpeed = 1.5f;
 
+		private Room room;
+
 		public PlayState(StateManager manager, ContentManager content) : base(manager, content)
 		{
 			input = new Input();
@@ -28,6 +31,9 @@ namespace PAST_windows.Code.GameStates
 			input.AddListener(this);
 
 			cursor = GameContent.GetSprite("cursor");
+
+			room = new DebugRoom();
+			player.SetRoom(room);
 		}
 
 		public override void Update(GameTime time)
@@ -46,6 +52,11 @@ namespace PAST_windows.Code.GameStates
 				Vector2 mousePos = input.GetMousePos();
 				cursor.Draw(batch, (int)mousePos.X, (int)mousePos.Y, 10, 10, cursorRot);
 			}
+		}
+
+		public override void DrawBloomed(GameTime time, SpriteBatch batch)
+		{
+			player.DrawBloomed(time, batch);
 		}
 
 		public override void Resume()

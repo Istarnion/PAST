@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Code\Animation.cs" />
+    <Compile Include="Code\Fx\BloomComponent.cs" />
+    <Compile Include="Code\Fx\BloomSettings.cs" />
     <Compile Include="Code\GameContent.cs" />
     <Compile Include="Code\GameObjects\Laser.cs" />
     <Compile Include="Code\GameObjects\Robot.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="Code\Program.cs" />
     <Compile Include="Code\GameObjects\GameObject.cs" />
     <Compile Include="Code\RayHitInfo.cs" />
+    <Compile Include="Code\Rooms\DebugRoom.cs" />
     <Compile Include="Code\Rooms\Room.cs" />
     <Compile Include="Code\Rooms\RoomGenerator.cs" />
     <Compile Include="Code\Sprite.cs" />

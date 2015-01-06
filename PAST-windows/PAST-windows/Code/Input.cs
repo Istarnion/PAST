@@ -13,6 +13,7 @@ namespace PAST_windows.Code
 		private List<InputListener> listeners;
 		private KeyboardState prevState;
 		private GamePadState prevGPState;
+		private MouseState prevMouseState;
 
 		private Vector2 movement;
 
@@ -86,6 +87,10 @@ namespace PAST_windows.Code
 			{
 				aim = new Vector2(rightStick.X, -rightStick.Y);
 			}
+			else if(aim.LengthSquared() == 0)
+			{
+				aim = new Vector2(0, -1);
+			}
 
 			prevGPState = gps;
 		}
@@ -114,9 +119,15 @@ namespace PAST_windows.Code
 				}
 			}
 
-			if(keyboardState.IsKeyUp(Keys.Space) && prevState.IsKeyDown(Keys.Space))
+			if((keyboardState.IsKeyUp(Keys.Space) && prevState.IsKeyDown(Keys.Space))
+				|| (mouseState.LeftButton != ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Pressed))
 			{
 				foreach (InputListener l in listeners) { l.FireButtonRelease(); }
+			}
+
+			if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton != ButtonState.Pressed)
+			{
+				foreach (InputListener l in listeners) { l.FireButtonPress(); }
 			}
 
 			mx = 0;
@@ -139,6 +150,7 @@ namespace PAST_windows.Code
 
 			mousePos = new Vector2(mouseState.Position.X, mouseState.Position.Y);
 
+			prevMouseState = mouseState;
 			prevState = keyboardState;
 		}
 
