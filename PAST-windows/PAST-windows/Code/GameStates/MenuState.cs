@@ -92,6 +92,17 @@ namespace PAST_windows.Code.GameStates
 
 		public override void DrawBloomed(GameTime time, SpriteBatch batch)
 		{
+			for (int i = 0; i < MENU_OPTIONS.Length; i++)
+			{
+				if (selectedOption == i)
+				{
+					batch.DrawString(font, ">" + MENU_OPTIONS[i], new Vector2(xOffset, yOffset + i * spacing), Color.White);
+				}
+				else
+				{
+					batch.DrawString(font, " " + MENU_OPTIONS[i], new Vector2(xOffset, yOffset + i * spacing), Color.White);
+				}
+			}
 		}
 
 		/// <summary>

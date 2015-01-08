@@ -23,9 +23,11 @@ namespace PAST_windows.Code
 
 		GraphicsDeviceManager graphics;
 		SpriteBatch batch;
-		SpriteBatch bloomedBatch;
+		RenderTarget2D bloomTarget;
+		Rectangle screenRectangle;
 
-		BloomComponent bloom;
+		public readonly int WIDTH;
+		public readonly int HEIGHT;
 
 		/// <summary>
 		/// Constructor sets up the GraphicsDeviceManager, sets the content directory,
@@ -36,11 +38,12 @@ namespace PAST_windows.Code
 		{
 			stateManager = new StateManager(this);
 			graphics = new GraphicsDeviceManager(this);
-			Content.RootDirectory = "Content";
+			WIDTH = graphics.PreferredBackBufferWidth;
+			HEIGHT = graphics.PreferredBackBufferHeight;
+			screenRectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
+			graphics.ApplyChanges();
 
-			bloom = new BloomComponent(this);
-			Components.Add(bloom);
-			bloom.Settings = new BloomSettings(null, 0.25f, 4, 2, 1, 1.5f, 1);
+			Content.RootDirectory = "Content";
 		}
 
 		/// <summary>
@@ -75,7 +78,13 @@ namespace PAST_windows.Code
 
 			// Create a new SpriteBatch, which can be used to draw textures.
 			batch = new SpriteBatch(GraphicsDevice);
-			bloomedBatch = new SpriteBatch(GraphicsDevice);
+			bloomTarget = new RenderTarget2D(
+				GraphicsDevice,
+				WIDTH,
+				HEIGHT,
+				true,
+				GraphicsDevice.PresentationParameters.BackBufferFormat,
+				DepthFormat.Depth24);
 		}
 
 		/// <summary>
@@ -84,7 +93,7 @@ namespace PAST_windows.Code
 		/// </summary>
 		protected override void UnloadContent()
 		{
-			// TODO: Unload any non ContentManager content here
+			bloomTarget.Dispose();
 		}
 
 		/// <summary>
@@ -105,14 +114,27 @@ namespace PAST_windows.Code
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
+			GraphicsDevice.SetRenderTarget(bloomTarget);
+			GraphicsDevice.Clear(Color.Transparent);
 
+			batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-			batch.Begin(SpriteSortMode.Texture, BlendState.Additive);
-			bloom.BeginDraw();
-
-			stateManager.Draw(gameTime, batch);
+			stateManager.DrawBloomed(gameTime, batch);
 
 			batch.End();
+
+			GraphicsDevice.SetRenderTarget(null);
+
+			GraphicsDevice.Clear(Color.Black);
+
+			batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+
+			stateManager.Draw(gameTime, batch);
+			//batch.Draw(bloomTarget, screenRectangle, Color.White);
+
+			batch.End();
+
+
 
 			base.Draw(gameTime);
 		}
