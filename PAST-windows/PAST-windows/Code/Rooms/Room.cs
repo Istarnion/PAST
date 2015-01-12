@@ -129,16 +129,20 @@ namespace PAST_windows.Code.Rooms
 		}
 
 		/// <summary>
-		/// Swaps the values of a and b
+		/// Swaps the values of a and b using xor swap algorithm.
+		/// This is done for novel resons, we know there is little if any at all
+		/// gain in preformance
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
 		/// <param name="a"></param>
 		/// <param name="b"></param>
-		private void Swap<T>(ref T a, ref T b)
+		private void Swap(ref int a, ref int b)
 		{
-			T c = a;
-			a = b;
-			b = c;
+			if(a != b)
+			{
+				a ^= b;
+				b ^= a;
+				a ^= b;
+			}
 		}
 	}
 }

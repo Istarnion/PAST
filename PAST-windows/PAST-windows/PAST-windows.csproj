@@ -39,6 +39,7 @@
     <Compile Include="Code\Fx\BloomComponent.cs" />
     <Compile Include="Code\Fx\BloomSettings.cs" />
     <Compile Include="Code\GameContent.cs" />
+    <Compile Include="Code\GameObjects\Door.cs" />
     <Compile Include="Code\GameObjects\Laser.cs" />
     <Compile Include="Code\GameObjects\Robot.cs" />
     <Compile Include="Code\GameStates\MenuState.cs" />
