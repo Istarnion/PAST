@@ -7,5 +7,9 @@ namespace PAST_windows.Code.GameObjects
 {
 	class Door : GameObject
 	{
+        public Door() : base(null, true, 5, 5)
+        {
+
+        }
 	}
 }
