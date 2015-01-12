@@ -13,24 +13,9 @@ namespace PAST_windows.Code
 	/// </summary>
 	class GameContent
 	{
-		private static Dictionary<String, Sprite> sprites;
-
-
-
-		private static bool ready = false;
+		private static Dictionary<String, Sprite> sprites = new Dictionary<string,Sprite>();
 
 		private GameContent() { }
-
-		/// <summary>
-		/// Setup the Dictionary
-		/// </summary>
-		/// <param name="gd"></param>
-		/// <param name="manager"></param>
-		public static void Setup()
-		{
-			sprites = new Dictionary<string, Sprite>();
-			ready = true;
-		}
 
 		public static void AddSprite(string key, Sprite s)
 		{
@@ -43,8 +28,6 @@ namespace PAST_windows.Code
 			if (sprites.TryGetValue(key, out sprite)) return sprite;
 			else return null;
 		}
-
-		public static bool Ready() { return ready; }
 	}
 
 }

@@ -41,7 +41,6 @@ namespace PAST_windows.Code
 			WIDTH = graphics.PreferredBackBufferWidth;
 			HEIGHT = graphics.PreferredBackBufferHeight;
 			screenRectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
-			graphics.ApplyChanges();
 
 			Content.RootDirectory = "Content";
 		}
@@ -67,7 +66,6 @@ namespace PAST_windows.Code
 		/// </summary>
 		protected override void LoadContent()
 		{
-			GameContent.Setup();
 
 			// Load sprites
 			GameContent.AddSprite("cursor", new Sprite(Content.Load<Texture2D>("sprites/cursor"), new Rectangle(0, 0, 8, 8)));
