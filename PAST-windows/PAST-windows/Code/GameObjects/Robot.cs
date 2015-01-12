@@ -90,12 +90,6 @@ namespace PAST_windows.Code.GameObjects
 
 			// Draw top
 			turret.Draw(batch, (int)xPos, (int)yPos, 64, 64, aimDir);
-
-			if (laser.active)
-			{
-				laser.Draw(batch, new Vector2(0, 0));
-			}
-
 		}
 
 		public void DrawBloomed(GameTime time, SpriteBatch batch)

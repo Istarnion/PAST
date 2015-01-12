@@ -54,6 +54,8 @@ namespace PAST_windows.Code
 		/// </summary>
 		protected override void Initialize()
 		{
+			graphics.GraphicsDevice.PresentationParameters.BackBufferFormat = SurfaceFormat.Color;
+
 			stateManager.Push(new MenuState(stateManager, Content));
 
 			base.Initialize();
@@ -110,31 +112,32 @@ namespace PAST_windows.Code
 
 		/// <summary>
 		/// This is called when the game should draw itself.
+		/// TODO:
+		/// Fix the bloom!
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.SetRenderTarget(bloomTarget);
-			GraphicsDevice.Clear(Color.Transparent);
+			//GraphicsDevice.SetRenderTarget(bloomTarget);
+			//GraphicsDevice.Clear(Color.Transparent);
 
-			batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+			//batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-			stateManager.DrawBloomed(gameTime, batch);
+			//stateManager.DrawBloomed(gameTime, batch);
 
-			batch.End();
+			//batch.End();
 
-			GraphicsDevice.SetRenderTarget(null);
+			//GraphicsDevice.SetRenderTarget(null);
 
 			GraphicsDevice.Clear(Color.Black);
 
 			batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
 			stateManager.Draw(gameTime, batch);
+			stateManager.DrawBloomed(gameTime, batch);
 			//batch.Draw(bloomTarget, screenRectangle, Color.White);
 
 			batch.End();
-
-
 
 			base.Draw(gameTime);
 		}

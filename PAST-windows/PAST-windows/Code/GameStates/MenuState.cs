@@ -76,20 +76,13 @@ namespace PAST_windows.Code.GameStates
 		/// <param name="time"></param>
 		/// <param name="batch"></param>
 		public override void Draw(GameTime time, SpriteBatch batch)
-		{
-			for(int i=0; i<MENU_OPTIONS.Length; i++)
-			{
-				if (selectedOption == i)
-				{
-					batch.DrawString(font, ">"+MENU_OPTIONS[i], new Vector2(xOffset, yOffset + i * spacing), Color.White);
-				}
-				else
-				{
-					batch.DrawString(font, " "+MENU_OPTIONS[i], new Vector2(xOffset, yOffset + i * spacing), Color.White);
-				}
-			}
-		}
+		{}
 
+		/// <summary>
+		/// Draws the menu options in a simplistic manner
+		/// </summary>
+		/// <param name="time"></param>
+		/// <param name="batch"></param>
 		public override void DrawBloomed(GameTime time, SpriteBatch batch)
 		{
 			for (int i = 0; i < MENU_OPTIONS.Length; i++)
