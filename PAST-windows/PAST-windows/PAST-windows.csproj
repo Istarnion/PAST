@@ -35,10 +35,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Code\Animation.cs" />
+    <Compile Include="Code\Graphics\Animation.cs" />
     <Compile Include="Code\Fx\BloomComponent.cs" />
     <Compile Include="Code\Fx\BloomSettings.cs" />
-    <Compile Include="Code\GameContent.cs" />
+    <Compile Include="Code\Graphics\Sprites.cs" />
     <Compile Include="Code\GameObjects\Door.cs" />
     <Compile Include="Code\GameObjects\Laser.cs" />
     <Compile Include="Code\GameObjects\Robot.cs" />
@@ -46,16 +46,18 @@
     <Compile Include="Code\GameStates\PlayState.cs" />
     <Compile Include="Code\GameStates\State.cs" />
     <Compile Include="Code\GameStates\StateManager.cs" />
-    <Compile Include="Code\Input.cs" />
-    <Compile Include="Code\InputListener.cs" />
+    <Compile Include="Code\Input\InputHandler.cs" />
+    <Compile Include="Code\Input\InputListener.cs" />
+    <Compile Include="Code\Logging\Logger.cs" />
     <Compile Include="Code\Past.cs" />
     <Compile Include="Code\Program.cs" />
     <Compile Include="Code\GameObjects\GameObject.cs" />
-    <Compile Include="Code\RayHitInfo.cs" />
+    <Compile Include="Code\Rooms\RayHitInfo.cs" />
     <Compile Include="Code\Rooms\DebugRoom.cs" />
     <Compile Include="Code\Rooms\Room.cs" />
     <Compile Include="Code\Rooms\RoomGenerator.cs" />
-    <Compile Include="Code\Sprite.cs" />
+    <Compile Include="Code\Graphics\Sprite.cs" />
+    <Compile Include="Code\ServiceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +85,9 @@
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Code\Audio\" />
     <Folder Include="Content\" />
+    <Folder Include="SoundEditor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PAST\PAST\PAST.csproj">

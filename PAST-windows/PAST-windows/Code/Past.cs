@@ -25,8 +25,9 @@ namespace PAST_windows.Code
 
 		GraphicsDeviceManager graphics;
 		SpriteBatch batch;
-		RenderTarget2D bloomTarget;
 		Rectangle screenRectangle;
+
+		private Sprites sprites;
 
 		public readonly int WIDTH;
 		public readonly int HEIGHT;
@@ -69,25 +70,12 @@ namespace PAST_windows.Code
 		/// </summary>
 		protected override void LoadContent()
 		{
-
 			// Load sprites
-			Sprites.AddSprite("cursor", new Sprite(Content.Load<Texture2D>("sprites/cursor"), new Rectangle(0, 0, 8, 8)));
-			Sprites.AddSprite("playerTurret", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(0, 0, 63, 64)));
-			Sprites.AddSprite("playerBase_1", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(64, 0, 64, 64)));
-			Sprites.AddSprite("playerBase_2", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(128, 0, 64, 64)));
-			Sprites.AddSprite("redLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(0, 0, 8, 8)));
-			Sprites.AddSprite("blueLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(8, 0, 8, 8)));
-			Sprites.AddSprite("greenLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(16, 0, 8, 8)));
+			sprites = new Sprites(this, Content);
+			ServiceProvider.sprites = sprites;
 
 			// Create a new SpriteBatch, which can be used to draw textures.
 			batch = new SpriteBatch(GraphicsDevice);
-			bloomTarget = new RenderTarget2D(
-				GraphicsDevice,
-				WIDTH,
-				HEIGHT,
-				true,
-				GraphicsDevice.PresentationParameters.BackBufferFormat,
-				DepthFormat.Depth24);
 		}
 
 		/// <summary>
@@ -96,7 +84,6 @@ namespace PAST_windows.Code
 		/// </summary>
 		protected override void UnloadContent()
 		{
-			bloomTarget.Dispose();
 		}
 
 		/// <summary>
@@ -119,24 +106,12 @@ namespace PAST_windows.Code
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			//GraphicsDevice.SetRenderTarget(bloomTarget);
-			//GraphicsDevice.Clear(Color.Transparent);
-
-			//batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-
-			//stateManager.DrawBloomed(gameTime, batch);
-
-			//batch.End();
-
-			//GraphicsDevice.SetRenderTarget(null);
-
 			GraphicsDevice.Clear(Color.Black);
 
 			batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
 			stateManager.Draw(gameTime, batch);
 			stateManager.DrawBloomed(gameTime, batch);
-			//batch.Draw(bloomTarget, screenRectangle, Color.White);
 
 			batch.End();
 

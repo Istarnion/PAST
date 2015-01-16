@@ -19,16 +19,13 @@ namespace PAST_windows.Code.GameStates
 		/// </summary>
 		protected StateManager manager;
 
-		protected ContentManager content;
-
 		/// <summary>
 		/// The constructor simply assigns the manager field
 		/// </summary>
 		/// <param name="manager"></param>
-		public State(StateManager manager, ContentManager content)
+		public State(StateManager manager)
 		{
 			this.manager = manager;
-			this.content = content;
 		}
 
 		/// <summary>

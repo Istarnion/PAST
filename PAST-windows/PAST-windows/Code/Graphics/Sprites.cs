@@ -13,16 +13,32 @@ namespace PAST_windows.Code.Graphics
 	/// </summary>
 	class Sprites
 	{
-		private static Dictionary<String, Sprite> sprites = new Dictionary<string,Sprite>();
+		private Dictionary<String, Sprite> sprites = new Dictionary<string,Sprite>();
 
-		private Sprites() { }
+		/// <summary>
+		/// This constructor takes an object of type Past to make sure that Past is the one and only
+		/// place this can be constructed from. This works, since nothing has a object of type Past.
+		/// In C++ we would have made declared Past our friend.
+		/// </summary>
+		/// <param name="key"> The Past 'key' cheaty trick </param>
+		/// <param name="content"> The games content manager, so Sprites can load Texture2Ds </param>
+		public Sprites(Past key, ContentManager content)
+		{
+			AddSprite("cursor",			new Sprite(content.Load<Texture2D>("sprites/cursor"),	new Rectangle(0, 0, 8, 8)));
+			AddSprite("playerTurret",	new Sprite(content.Load<Texture2D>("sprites/player"),	new Rectangle(0, 0, 63, 64)));
+			AddSprite("playerBase_1",	new Sprite(content.Load<Texture2D>("sprites/player"),	new Rectangle(64, 0, 64, 64)));
+			AddSprite("playerBase_2",	new Sprite(content.Load<Texture2D>("sprites/player"),	new Rectangle(128, 0, 64, 64)));
+			AddSprite("redLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),	new Rectangle(0, 0, 8, 8)));
+			AddSprite("blueLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),	new Rectangle(8, 0, 8, 8)));
+			AddSprite("greenLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),	new Rectangle(16, 0, 8, 8)));
+		}
 
-		public static void AddSprite(string key, Sprite s)
+		private void AddSprite(string key, Sprite s)
 		{
 			if (key != null && s != null) sprites.Add(key, s);
 		}
 
-		public static Sprite GetSprite(string key)
+		public Sprite GetSprite(string key)
 		{
 			Sprite sprite;
 			if (sprites.TryGetValue(key, out sprite)) return sprite;
