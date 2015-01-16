@@ -6,16 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PAST_windows.Code
+namespace PAST_windows.Code.Graphics
 {
 	/// <summary>
 	/// Static class for handling resources.
 	/// </summary>
-	class GameContent
+	class Sprites
 	{
 		private static Dictionary<String, Sprite> sprites = new Dictionary<string,Sprite>();
 
-		private GameContent() { }
+		private Sprites() { }
 
 		public static void AddSprite(string key, Sprite s)
 		{

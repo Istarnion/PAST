@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PAST_windows.Code.GameObjects;
+using PAST_windows.Code.Graphics;
+using PAST_windows.Code.Input;
 using PAST_windows.Code.Rooms;
 using System;
 using System.Collections.Generic;
@@ -10,12 +12,17 @@ using System.Text;
 
 namespace PAST_windows.Code.GameStates
 {
+
+	/// <summary>
+	/// This is the main class of the game play.
+	/// This class holds the player, and the current room, and handles all relations between these.
+	/// </summary>
 	class PlayState : State, InputListener
 	{
 
 		private Robot player;
 
-		private Input input;
+		private InputHandler input;
 
 		private Sprite cursor;
 
@@ -24,16 +31,19 @@ namespace PAST_windows.Code.GameStates
 
 		private Room room;
 
+		private Vector2 cameraOffset;
+
 		public PlayState(StateManager manager, ContentManager content) : base(manager, content)
 		{
-			input = new Input();
-			player = new Robot(input);
+			input = new InputHandler();
+			player = new Robot(input, this);
 			input.AddListener(this);
 
-			cursor = GameContent.GetSprite("cursor");
+			cameraOffset = new Vector2(0, 0);
+
+			cursor = Sprites.GetSprite("cursor");
 
 			room = new DebugRoom();
-			player.SetRoom(room);
 		}
 
 		public override void Update(GameTime time)
@@ -41,6 +51,24 @@ namespace PAST_windows.Code.GameStates
 			input.Update();			// Input must be updated first!
 			player.Update(time);
 			cursorRot += (float)(cursorRotSpeed * time.ElapsedGameTime.TotalSeconds);
+		}
+
+		/// <summary>
+		/// Shoots a laser through the current room.
+		/// </summary>
+		/// <param name="origin"> The origin of the laser</param>
+		/// <param name="dir"> The direction of the laser </param>
+		/// <param name="l"> The laser object we're shooting </param>
+		/// <returns> THe end point </returns>
+		public Vector2 ShootLaser(Vector2 origin, Vector2 dir, Laser l) {
+			RayHitInfo info = room.Raycast(origin, dir);
+
+			if(info.victim != null)
+			{
+				info.victim.HitWithLaser(l);
+			}
+
+			return info.end;
 		}
 
 		public override void Draw(GameTime time, SpriteBatch batch)

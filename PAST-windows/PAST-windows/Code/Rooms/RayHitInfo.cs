@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PAST_windows.Code
+namespace PAST_windows.Code.Rooms
 {
 	class RayHitInfo
 	{

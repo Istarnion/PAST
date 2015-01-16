@@ -1,5 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PAST_windows.Code.GameStates;
+using PAST_windows.Code.Graphics;
+using PAST_windows.Code.Input;
 using PAST_windows.Code.Rooms;
 using System;
 using System.Collections.Generic;
@@ -16,7 +19,7 @@ namespace PAST_windows.Code.GameObjects
 
 		private Laser laser;
 
-		private Input input;
+		private InputHandler input;
 
 		private float xPos, yPos;
 
@@ -29,14 +32,15 @@ namespace PAST_windows.Code.GameObjects
 		private float aimDir = 0;
 		private float moveDir = 0;
 
-		private Room room;
+		private PlayState playState;
 
-		public Robot(Input input)
+		public Robot(InputHandler input, PlayState ps)
 		{
+			this.playState = ps;
 			laser = new Laser(LaserColor.RED);
 
-			turret = GameContent.GetSprite("playerTurret");
-			belts = new Animation(new Sprite[]{GameContent.GetSprite("playerBase_1"), GameContent.GetSprite("playerBase_2")}, 0.033f);
+			turret = Sprites.GetSprite("playerTurret");
+			belts = new Animation(new Sprite[]{Sprites.GetSprite("playerBase_1"), Sprites.GetSprite("playerBase_2")}, 0.033f);
 			this.input = input;
 			
 			xPos = 200;
@@ -77,8 +81,7 @@ namespace PAST_windows.Code.GameObjects
 
 			if(laser.active)
 			{
-				RayHitInfo info = room.Raycast(new Vector2(xPos, yPos), aim);
-				laser.SetEndPoint(info.end);
+				laser.SetEndPoint(playState.ShootLaser(new Vector2(xPos, yPos), aim, laser));
 				laser.SetStartPoint(new Vector2(xPos, yPos) + aim * 9);
 			}
 		}
@@ -113,11 +116,6 @@ namespace PAST_windows.Code.GameObjects
 		public void ChangeLaser()
 		{
 
-		}
-
-		public void SetRoom(Room r)
-		{
-			this.room = r;
 		}
 	}
 }

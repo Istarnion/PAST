@@ -87,6 +87,9 @@ namespace PAST_windows.Code.GameObjects
 		public void Update(GameTime time)
 		{ }
 
+		public void HitWithLaser(Laser l)
+		{ }
+
 		/// <summary>
 		/// Default drawing method. If the gameobject subclass doesn't need fancy drawing,
 		/// it is enough to invoke this method.

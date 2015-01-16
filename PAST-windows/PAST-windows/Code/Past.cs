@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using PAST_windows.Code.GameStates;
 using BloomPostprocess;
+using System.Windows.Forms;
+using PAST_windows.Code.Graphics;
 #endregion
 
 namespace PAST_windows.Code
@@ -36,6 +38,7 @@ namespace PAST_windows.Code
 		public Past()
 			: base()
 		{
+
 			stateManager = new StateManager(this);
 			graphics = new GraphicsDeviceManager(this);
 			WIDTH = graphics.PreferredBackBufferWidth;
@@ -68,13 +71,13 @@ namespace PAST_windows.Code
 		{
 
 			// Load sprites
-			GameContent.AddSprite("cursor", new Sprite(Content.Load<Texture2D>("sprites/cursor"), new Rectangle(0, 0, 8, 8)));
-			GameContent.AddSprite("playerTurret", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(0, 0, 63, 64)));
-			GameContent.AddSprite("playerBase_1", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(64, 0, 64, 64)));
-			GameContent.AddSprite("playerBase_2", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(128, 0, 64, 64)));
-			GameContent.AddSprite("redLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(0, 0, 8, 8)));
-			GameContent.AddSprite("blueLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(8, 0, 8, 8)));
-			GameContent.AddSprite("greenLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(16, 0, 8, 8)));
+			Sprites.AddSprite("cursor", new Sprite(Content.Load<Texture2D>("sprites/cursor"), new Rectangle(0, 0, 8, 8)));
+			Sprites.AddSprite("playerTurret", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(0, 0, 63, 64)));
+			Sprites.AddSprite("playerBase_1", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(64, 0, 64, 64)));
+			Sprites.AddSprite("playerBase_2", new Sprite(Content.Load<Texture2D>("sprites/player"), new Rectangle(128, 0, 64, 64)));
+			Sprites.AddSprite("redLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(0, 0, 8, 8)));
+			Sprites.AddSprite("blueLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(8, 0, 8, 8)));
+			Sprites.AddSprite("greenLaser", new Sprite(Content.Load<Texture2D>("sprites/lasers"), new Rectangle(16, 0, 8, 8)));
 
 			// Create a new SpriteBatch, which can be used to draw textures.
 			batch = new SpriteBatch(GraphicsDevice);

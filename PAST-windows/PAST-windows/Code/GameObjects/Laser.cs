@@ -23,13 +23,13 @@ namespace PAST_windows.Code.GameObjects
 			switch(color)
 			{
 				case LaserColor.RED:
-					sprite = GameContent.GetSprite("redLaser");
+					sprite = Sprites.GetSprite("redLaser");
 					break;
 				case LaserColor.BLUE:
-					sprite = GameContent.GetSprite("blueLaser");
+					sprite = Sprites.GetSprite("blueLaser");
 					break;
 				case LaserColor.GREEN:
-					sprite = GameContent.GetSprite("greenLaser");
+					sprite = Sprites.GetSprite("greenLaser");
 					break;
 				default:
 					break;

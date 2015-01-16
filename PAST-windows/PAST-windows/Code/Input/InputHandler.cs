@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PAST_windows.Code
+namespace PAST_windows.Code.Input
 {
-	class Input
+	class InputHandler
 	{
 
 		private List<InputListener> listeners;
@@ -23,7 +23,7 @@ namespace PAST_windows.Code
 
 		private bool gamePad = false;
 
-		public Input()
+		public InputHandler()
 		{
 			listeners = new List<InputListener>(1);
 			prevState = Keyboard.GetState();
