@@ -33,7 +33,7 @@ namespace PAST_windows.Code.GameStates
 
 		private Vector2 cameraOffset;
 
-		public PlayState(StateManager manager, ContentManager content) : base(manager, content)
+		public PlayState(StateManager manager) : base(manager)
 		{
 			input = new InputHandler();
 			player = new Robot(input, this);
@@ -41,7 +41,7 @@ namespace PAST_windows.Code.GameStates
 
 			cameraOffset = new Vector2(0, 0);
 
-			cursor = Sprites.GetSprite("cursor");
+			cursor = ServiceProvider.sprites.GetSprite("cursor");
 
 			room = new DebugRoom();
 		}
@@ -74,6 +74,8 @@ namespace PAST_windows.Code.GameStates
 		public override void Draw(GameTime time, SpriteBatch batch)
 		{
 			player.Draw(time, batch);
+
+			room.Draw(time, batch, new Vector2(0, 0));
 
 			if (!input.IsGamepad())
 			{

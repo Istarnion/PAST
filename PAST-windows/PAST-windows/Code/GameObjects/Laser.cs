@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PAST_windows.Code.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace PAST_windows.Code.GameObjects
 {
 	class Laser
 	{
-		private Sprite sprite;
+		private Code.Graphics.Sprite sprite;
 
 		public bool active { get; set; }
 
@@ -23,13 +24,13 @@ namespace PAST_windows.Code.GameObjects
 			switch(color)
 			{
 				case LaserColor.RED:
-					sprite = Sprites.GetSprite("redLaser");
+					sprite = ServiceProvider.sprites.GetSprite("redLaser");
 					break;
 				case LaserColor.BLUE:
-					sprite = Sprites.GetSprite("blueLaser");
+					sprite = ServiceProvider.sprites.GetSprite("blueLaser");
 					break;
 				case LaserColor.GREEN:
-					sprite = Sprites.GetSprite("greenLaser");
+					sprite = ServiceProvider.sprites.GetSprite("greenLaser");
 					break;
 				default:
 					break;

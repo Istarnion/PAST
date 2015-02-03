@@ -39,8 +39,8 @@ namespace PAST_windows.Code.GameObjects
 			this.playState = ps;
 			laser = new Laser(LaserColor.RED);
 
-			turret = Sprites.GetSprite("playerTurret");
-			belts = new Animation(new Sprite[]{Sprites.GetSprite("playerBase_1"), Sprites.GetSprite("playerBase_2")}, 0.033f);
+			turret = ServiceProvider.sprites.GetSprite("playerTurret");
+			belts = new Animation(new Sprite[] { ServiceProvider.sprites.GetSprite("playerBase_1"), ServiceProvider.sprites.GetSprite("playerBase_2") }, 0.033f);
 			this.input = input;
 			
 			xPos = 200;

@@ -32,7 +32,7 @@ namespace PAST_windows.Code.GameStates
 		/// The constructor sets up the menuoptions
 		/// </summary>
 		/// <param name="manager">The game's StateManager</param>
-		public MenuState(StateManager manager, ContentManager content) : base(manager, content)
+		public MenuState(StateManager manager, ContentManager content) : base(manager)
 		{
 			font = content.Load<SpriteFont>("fonts/Console");
 			oldState = Keyboard.GetState();	// Initialize
@@ -63,7 +63,7 @@ namespace PAST_windows.Code.GameStates
 			// Select
 			if (state.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 			{
-				if (selectedOption == 0) manager.Push(new PlayState(manager, content));
+				if (selectedOption == 0) manager.Push(new PlayState(manager));
 				else manager.Pop();
 			}
 

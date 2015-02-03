@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PAST_windows.Code.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace PAST_windows.Code.GameObjects
 				{
 					for (int j = 0; j < r.Width; j++)
 					{
-						solidityMap[j, i] = spriteData[i * r.Height + j].A == 0;	// This is WRONG. Fix!
+						solidityMap[j, i] = spriteData[i * r.Width + j].A == 0;	// This is WRONG. Fix!
 					}
 				}
 			}
@@ -63,6 +64,11 @@ namespace PAST_windows.Code.GameObjects
 			this.solidityMap = solidityMap;
 		}
 
+		public GameObject()
+		{
+			// TODO: Complete member initialization
+		}
+
 		/// <summary>
 		/// This method returns the result of a pixel perfect collision check
 		/// It earlies out with the seperating axis theorem, so it is still quite efficient.
@@ -74,12 +80,18 @@ namespace PAST_windows.Code.GameObjects
 		{
 			if (!solid) return false;
 
+			int w = solidityMap.GetLength(0);
+			int h = solidityMap.GetLength(1);
+
+			int xP = xPos - w / 2;
+			int yP = yPos - h / 2;
+
 			// Early out with seperating axis theorem
-			if (x < xPos || x > xPos + TILE_SIZE || y < xPos || y > yPos + TILE_SIZE) return false;
+			if (x < xP || x >= xP + w || y < yP || y >= yP + h) return false;
 
 			// Now we know the point is inside us, so we need to check with the solidity map
-			int relX = x - xPos;
-			int relY = y - yPos;
+			int relX = x - xP;
+			int relY = y - yP;
 			if (solidityMap[relX, relY]) return true;
 			return false;
 		}
@@ -93,14 +105,16 @@ namespace PAST_windows.Code.GameObjects
 		/// <summary>
 		/// Default drawing method. If the gameobject subclass doesn't need fancy drawing,
 		/// it is enough to invoke this method.
-		/// It draws the object to be square, at the default tile size, no rotation, and no tint.
+		/// It draws the object to be square, at the default tile size, and no tint.
 		/// </summary>
 		/// <param name="time">			The current timestamp </param>
 		/// <param name="batch">		The spritebatch that we can talk to </param>
 		/// <param name="camOffset">	The Camera offset we must consider when rendering </param>
 		public void Draw(GameTime time, SpriteBatch batch, Vector2 camOffset)
 		{
+			Sprite s = ServiceProvider.sprites.GetSprite("cursor");
 			sprite.Draw(batch, (int)(xPos + camOffset.X), (int)(yPos + camOffset.Y), TILE_SIZE, TILE_SIZE, rotation);
+			s.Draw(batch, (int)(xPos + camOffset.X), (int)(yPos + camOffset.Y), 8, 8, rotation);
 		}
 
 		public GameObject Copy()

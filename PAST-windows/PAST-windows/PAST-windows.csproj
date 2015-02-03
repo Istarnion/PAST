@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Code\GameObjects\Obstacle.cs" />
     <Compile Include="Code\Graphics\Animation.cs" />
     <Compile Include="Code\Fx\BloomComponent.cs" />
     <Compile Include="Code\Fx\BloomSettings.cs" />
