@@ -83,17 +83,17 @@ namespace PAST_windows.Code.GameObjects
 			int w = solidityMap.GetLength(0);
 			int h = solidityMap.GetLength(1);
 
-			int xP = xPos - w / 2;
-			int yP = yPos - h / 2;
+			int left = xPos - w / 2;
+			int top = yPos - h / 2;
 
 			// Early out with seperating axis theorem
-			if (x < xP || x >= xP + w || y < yP || y >= yP + h) return false;
+			if (x < left || x >= left + w || y < top || y >= top + h) return false;
 
 			// Now we know the point is inside us, so we need to check with the solidity map
-			int relX = x - xP;
-			int relY = y - yP;
-			if (solidityMap[relX, relY]) return true;
-			return false;
+			int relX = x - left;
+			int relY = y - top;
+
+			return solidityMap[relX, relY];
 		}
 
 		public void Update(GameTime time)

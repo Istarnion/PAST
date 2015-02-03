@@ -16,11 +16,14 @@ namespace PAST_windows.Code.Rooms
 
 		public readonly GameObject victim;
 
-		public RayHitInfo(Vector2 o, Vector2 e, GameObject v)
+		public readonly int length;
+
+		public RayHitInfo(Vector2 o, Vector2 e, GameObject v, int length)
 		{
 			origin = o;
 			end = e;
 			victim = v;
+			this.length = length;
 		}
 	}
 }

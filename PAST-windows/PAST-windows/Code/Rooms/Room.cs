@@ -54,28 +54,71 @@ namespace PAST_windows.Code.Rooms
 		public RayHitInfo Raycast(Vector2 origin, Vector2 dir)
 		{
 			dir.Normalize();
-			Vector2 endpoint = origin + dir * (int)Math.Sqrt(Math.Pow(width, 2) + Math.Pow(height, 2));
+			Vector2 endpoint = origin;
 			GameObject victim = null;
 
-			foreach(Vector2 v in BresenhamLine((int)origin.X, (int)origin.Y, (int)endpoint.X, (int)endpoint.Y))
+			int delta;
+			int stepDir = 1;
+
+			bool steep = Math.Abs(dir.Y) > Math.Abs(dir.X);
+			if(steep)
 			{
-				foreach(GameObject obj in gameObjects)
+				delta = (int)(dir.X / dir.Y);
+				if (dir.Y < 0) stepDir = -1;
+			}
+			else
+			{
+				delta = (int)(dir.Y / dir.X);
+				if (dir.Y < 0) stepDir = -1;
+			}
+
+			int ox = (int)origin.X;
+			int oy = (int)origin.Y;
+			int x = ox;
+			int y = oy;
+
+			int length = 0;
+
+			bool hitObject = false;
+
+			while(true)
+			{
+				// First, find x and y, flipping if steep.
+				if(steep)
 				{
-					if(v.X < 0 || v.X >= width || v.Y < 0 || v.Y >= height)
+					y += stepDir;
+					x += delta;
+				}
+				else
+				{
+					x += stepDir;
+					y += delta;
+				}
+
+				// Then, check if we are still inside the bounds of the room
+				if(x < 0 || x >= width || y < 0 || y >= height)
+				{
+					endpoint = new Vector2(x, y);
+					break;
+				}
+
+				// If we are, chek against all game objects. This may be optimized with something like a quad tree if needed
+				foreach (GameObject gObject in gameObjects)
+				{
+					if(gObject.PxPerfCollision(x, y))
 					{
-						endpoint = v;
-						break;
-					}
-					if(obj.PxPerfCollision((int)v.X, (int)v.Y))
-					{
-						victim = obj;
-						endpoint = v;
+						victim = gObject;
+						endpoint = new Vector2(x, y);
+						hitObject = true;
 						break;
 					}
 				}
+				if (hitObject) break;
+
+				length++;
 			}
 
-			RayHitInfo info = new RayHitInfo(origin, endpoint, victim);
+			RayHitInfo info = new RayHitInfo(origin, endpoint, victim, length);
 			return info;
 		}
 
