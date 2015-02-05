@@ -24,13 +24,15 @@ namespace PAST_windows.Code.Graphics
 		/// <param name="content"> The games content manager, so Sprites can load Texture2Ds </param>
 		public Sprites(Past key, ContentManager content)
 		{
-			AddSprite("cursor",			new Sprite(content.Load<Texture2D>("sprites/cursor"),	new Rectangle(0, 0, 8, 8)));
-			AddSprite("playerTurret",	new Sprite(content.Load<Texture2D>("sprites/player"),	new Rectangle(0, 0, 63, 64)));
-			AddSprite("playerBase_1",	new Sprite(content.Load<Texture2D>("sprites/player"),	new Rectangle(64, 0, 64, 64)));
-			AddSprite("playerBase_2",	new Sprite(content.Load<Texture2D>("sprites/player"),	new Rectangle(128, 0, 64, 64)));
-			AddSprite("redLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),	new Rectangle(0, 0, 8, 8)));
-			AddSprite("blueLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),	new Rectangle(8, 0, 8, 8)));
-			AddSprite("greenLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),	new Rectangle(16, 0, 8, 8)));
+			AddSprite("cursor",			new Sprite(content.Load<Texture2D>("sprites/cursor"),		new Rectangle(0, 0, 8, 8)));
+			AddSprite("playerTurret",	new Sprite(content.Load<Texture2D>("sprites/player"),		new Rectangle(0, 0, 63, 64)));
+			AddSprite("playerBase_1",	new Sprite(content.Load<Texture2D>("sprites/player"),		new Rectangle(64, 0, 64, 64)));
+			AddSprite("playerBase_2",	new Sprite(content.Load<Texture2D>("sprites/player"),		new Rectangle(128, 0, 64, 64)));
+			AddSprite("redLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),		new Rectangle(0, 0, 8, 8)));
+			AddSprite("blueLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),		new Rectangle(8, 0, 8, 8)));
+			AddSprite("greenLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),		new Rectangle(16, 0, 8, 8)));
+			AddSprite("debugBG",		new Sprite(content.Load<Texture2D>("sprites/debugBG"),		new Rectangle(0, 0, 1000, 1000)));
+			AddSprite("obstacle",		new Sprite(content.Load<Texture2D>("sprites/objects"),	new Rectangle(0, 0, 64, 64)));
 		}
 
 		private void AddSprite(string key, Sprite s)

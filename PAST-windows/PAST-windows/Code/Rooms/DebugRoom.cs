@@ -12,6 +12,7 @@ namespace PAST_windows.Code.Rooms
 		public DebugRoom() : base(1000, 1000)
 		{
 			base.Add(new Obstacle(400, 250));
+			base.background = ServiceProvider.sprites.GetSprite("debugBG");
 		}
 	}
 }

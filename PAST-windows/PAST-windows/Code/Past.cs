@@ -29,8 +29,8 @@ namespace PAST_windows.Code
 
 		private Sprites sprites;
 
-		public readonly int WIDTH;
-		public readonly int HEIGHT;
+		public static int WIDTH { private set;	get; }
+		public static int HEIGHT { private set;	get; }
 
 		/// <summary>
 		/// Constructor sets up the GraphicsDeviceManager, sets the content directory,

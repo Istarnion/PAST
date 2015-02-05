@@ -41,11 +41,11 @@ namespace PAST_windows.Code.GameObjects
 		{
 			if(startPoint.X == endPoint.X)	// If perfectly vertical
 			{
-				sprite.Draw(batch, (int)(startPoint.X), (int)((startPoint.Y + endPoint.Y)/2), 8, (int)(startPoint - endPoint).Length(), 0);
+				sprite.Draw(batch, (int)(startPoint.X - camOffset.X), (int)((startPoint.Y + endPoint.Y)/2 - camOffset.Y), 8, (int)(startPoint - endPoint).Length(), 0);
 			}
 			else if(startPoint.Y == endPoint.Y)	// If perfectly horizontal
 			{
-				sprite.Draw(batch, (int)((startPoint.X + endPoint.X) / 2), (int)(startPoint.Y), 8, (int)(startPoint - endPoint).Length(), (float)(Math.PI / 2));
+				sprite.Draw(batch, (int)((startPoint.X + endPoint.X) / 2 - camOffset.X), (int)(startPoint.Y - camOffset.Y), 8, (int)(startPoint - endPoint).Length(), (float)(Math.PI / 2));
 			}
 			else	// Any other case
 			{
@@ -56,7 +56,7 @@ namespace PAST_windows.Code.GameObjects
 				float length = dir.Length();
 				dir.Normalize();
 
-				sprite.Draw(batch, (int)(startPoint.X + dir.X * (length / 2)), (int)(startPoint.Y + dir.Y * (length / 2)), 8, (int)length, angle);
+				sprite.Draw(batch, (int)((startPoint.X + dir.X * (length / 2)) - camOffset.X), (int)((startPoint.Y + dir.Y * (length / 2)) - camOffset.Y), 8, (int)length, angle);
 			}
 		}
 

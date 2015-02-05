@@ -33,13 +33,24 @@ namespace PAST_windows.Code.GameStates
 
 		private Vector2 cameraOffset;
 
+		private Vector2 viewPortOffset;
+
+		private int viewportWidth;
+
+		private int viewportHeight;
+
 		public PlayState(StateManager manager) : base(manager)
 		{
 			input = new InputHandler();
-			player = new Robot(input, this);
+			player = new Robot(input, this, new Vector2(300, 300));
 			input.AddListener(this);
 
 			cameraOffset = new Vector2(0, 0);
+
+			viewportWidth = Past.WIDTH;
+			viewportHeight = Past.HEIGHT;
+
+			viewPortOffset = new Vector2(viewportWidth / 2, viewportHeight / 2);
 
 			cursor = ServiceProvider.sprites.GetSprite("cursor");
 
@@ -48,9 +59,15 @@ namespace PAST_windows.Code.GameStates
 
 		public override void Update(GameTime time)
 		{
-			input.Update();			// Input must be updated first!
-			player.Update(time);
+			input.Update(cameraOffset);			// Input must be updated first!
+			player.Update(time, cameraOffset);
 			cursorRot += (float)(cursorRotSpeed * time.ElapsedGameTime.TotalSeconds);
+
+			cameraOffset = player.GetPosition() - viewPortOffset;
+			if (cameraOffset.X < 0) cameraOffset.X = 0;
+			if (cameraOffset.X > room.width - viewportWidth) cameraOffset.X = room.width - viewportWidth;
+			if (cameraOffset.Y < 0) cameraOffset.Y = 0;
+			if (cameraOffset.Y > room.height - viewportHeight) cameraOffset.Y = room.height - viewportHeight;
 		}
 
 		/// <summary>
@@ -73,9 +90,9 @@ namespace PAST_windows.Code.GameStates
 
 		public override void Draw(GameTime time, SpriteBatch batch)
 		{
-			player.Draw(time, batch);
+			room.Draw(time, batch, cameraOffset);
 
-			room.Draw(time, batch, new Vector2(0, 0));
+			player.Draw(time, batch, cameraOffset);
 
 			if (!input.IsGamepad())
 			{
@@ -86,7 +103,7 @@ namespace PAST_windows.Code.GameStates
 
 		public override void DrawBloomed(GameTime time, SpriteBatch batch)
 		{
-			player.DrawBloomed(time, batch);
+			player.DrawBloomed(time, batch, cameraOffset);
 		}
 
 		public override void Resume()

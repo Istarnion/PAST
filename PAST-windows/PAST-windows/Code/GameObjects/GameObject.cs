@@ -11,11 +11,15 @@ namespace PAST_windows.Code.GameObjects
 	class GameObject
 	{
 
-		public static int TILE_SIZE = 64;
+		public const int TILE_SIZE = 64;
 
 		private int xPos { get; set; }
 
 		private int yPos { get; set; }
+
+		private int width { get; set; }
+
+		private int height { get; set; }
 
 		protected float rotation = 0;
 
@@ -25,12 +29,14 @@ namespace PAST_windows.Code.GameObjects
 
 		private bool[,] solidityMap;
 
-		public GameObject(Sprite sprite, bool solid, int xPos, int yPos)
+		public GameObject(Sprite sprite, bool solid, int xPos, int yPos, int width = TILE_SIZE, int height = TILE_SIZE)
 		{
 			this.sprite = sprite;
 			this.solid = solid;
 			this.xPos = xPos;
 			this.yPos = yPos;
+			this.width = width;
+			this.height = height;
 
 			// Setup the soliditymap
 			if (sprite != null)
@@ -45,7 +51,7 @@ namespace PAST_windows.Code.GameObjects
 				{
 					for (int j = 0; j < r.Width; j++)
 					{
-						solidityMap[j, i] = spriteData[i * r.Width + j].A == 0;	// This is WRONG. Fix!
+						solidityMap[j, i] = spriteData[i * r.Width + j].A != 0;
 					}
 				}
 			}
@@ -96,7 +102,7 @@ namespace PAST_windows.Code.GameObjects
 			return solidityMap[relX, relY];
 		}
 
-		public void Update(GameTime time)
+		public virtual void Update(GameTime time)
 		{ }
 
 		public void HitWithLaser(Laser l)
@@ -110,11 +116,9 @@ namespace PAST_windows.Code.GameObjects
 		/// <param name="time">			The current timestamp </param>
 		/// <param name="batch">		The spritebatch that we can talk to </param>
 		/// <param name="camOffset">	The Camera offset we must consider when rendering </param>
-		public void Draw(GameTime time, SpriteBatch batch, Vector2 camOffset)
+		public virtual void Draw(GameTime time, SpriteBatch batch, Vector2 camOffset)
 		{
-			Sprite s = ServiceProvider.sprites.GetSprite("cursor");
-			sprite.Draw(batch, (int)(xPos + camOffset.X), (int)(yPos + camOffset.Y), TILE_SIZE, TILE_SIZE, rotation);
-			s.Draw(batch, (int)(xPos + camOffset.X), (int)(yPos + camOffset.Y), 8, 8, rotation);
+			sprite.Draw(batch, (int)(xPos - camOffset.X), (int)(yPos - camOffset.Y), width, height, rotation);
 		}
 
 		public GameObject Copy()

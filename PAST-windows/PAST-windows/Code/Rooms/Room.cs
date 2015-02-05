@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PAST_windows.Code.GameObjects;
+using PAST_windows.Code.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,15 @@ using System.Text;
 
 namespace PAST_windows.Code.Rooms
 {
-	class Room
+	abstract class Room
 	{
 
-		private int width, height;
+		public int width { private set; get; }
+		public int height { private set; get; }
 
 		private List<GameObject> gameObjects;
+
+		protected Sprite background;
 
 		public Room(int width, int height)
 		{
@@ -37,10 +41,25 @@ namespace PAST_windows.Code.Rooms
 
 		public void Draw(GameTime time, SpriteBatch batch, Vector2 camOffset)
 		{
+			if(background != null)
+			{
+				background.Draw(batch, (int)(width / 2 - camOffset.X), (int)(height / 2 - camOffset.Y), width, height, 0);
+			}
+
 			foreach (GameObject obj in gameObjects)
 			{
 				obj.Draw(time, batch, camOffset);
 			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="rect"></param>
+		/// <returns></returns>
+		public bool CollisionCheck(GameObject go)
+		{
+			return false;
 		}
 
 		/// <summary>

@@ -34,7 +34,7 @@ namespace PAST_windows.Code.Input
 		/// This method should be called before the update to the game logic occurs every frame.
 		/// TODO: Implement gamepad support.
 		/// </summary>
-		public void Update()
+		public void Update(Vector2 camOffset)
 		{
 			GamePadState gps = GamePad.GetState(0);
 			KeyboardState kps = Keyboard.GetState();
@@ -134,8 +134,8 @@ namespace PAST_windows.Code.Input
 			my = 0;
 			mx += (keyboardState.IsKeyDown(Keys.D) ? 1 : 0);
 			mx -= (keyboardState.IsKeyDown(Keys.A) ? 1 : 0);
-			my += (keyboardState.IsKeyDown(Keys.W) ? 1 : 0);
-			my -= (keyboardState.IsKeyDown(Keys.S) ? 1 : 0);
+			my += (keyboardState.IsKeyDown(Keys.S) ? 1 : 0);
+			my -= (keyboardState.IsKeyDown(Keys.W) ? 1 : 0);
 			movement = new Vector2(mx, my);
 			if (mx != 0 && my != 0) movement.Normalize();
 
@@ -159,12 +159,12 @@ namespace PAST_windows.Code.Input
 			return movement;
 		}
 
-		public Vector2 GetAim(Vector2 pos)
+		public Vector2 GetAim(Vector2 pos, Vector2 camOffset)
 		{
 			if (gamePad) return aim;
 			else
 			{
-				Vector2 v = mousePos - pos;
+				Vector2 v = mousePos + camOffset - pos;
 				v.Normalize();
 				return v;
 			}
