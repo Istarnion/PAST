@@ -13,13 +13,13 @@ namespace PAST_windows.Code.GameObjects
 
 		public const int TILE_SIZE = 64;
 
-		private int xPos { get; set; }
+		public int xPos { get; set; }
 
-		private int yPos { get; set; }
+		public int yPos { get; set; }
 
-		private int width { get; set; }
+		public int width { get; private set; }
 
-		private int height { get; set; }
+		public int height { get; private set; }
 
 		protected float rotation = 0;
 
@@ -70,9 +70,12 @@ namespace PAST_windows.Code.GameObjects
 			this.solidityMap = solidityMap;
 		}
 
-		public GameObject()
+		public bool CollisionCheck(GameObject other)
 		{
-			// TODO: Complete member initialization
+			return !(other.xPos > xPos + width / 2 ||
+				other.xPos + other.width / 2 < xPos-width/2 ||
+				other.yPos > yPos + height / 2 ||
+				other.yPos + other.height / 2 < yPos - height / 2);
 		}
 
 		/// <summary>
