@@ -78,6 +78,14 @@ namespace PAST_windows.Code.GameObjects
 				other.yPos + other.height / 2 < yPos - height / 2);
 		}
 
+		public bool CollisionCheck(int x, int y, int w, int h)
+		{
+			return !(	x >= xPos + width ||
+						x + w / 2 < xPos - width / 2 ||
+						y >= yPos + height ||
+						y + h / 2 < yPos - height / 2);
+		}
+
 		/// <summary>
 		/// This method returns the result of a pixel perfect collision check
 		/// It earlies out with the seperating axis theorem, so it is still quite efficient.

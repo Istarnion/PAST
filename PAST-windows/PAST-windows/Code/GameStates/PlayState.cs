@@ -70,6 +70,11 @@ namespace PAST_windows.Code.GameStates
 			if (cameraOffset.Y > room.height - viewportHeight) cameraOffset.Y = room.height - viewportHeight;
 		}
 
+		public bool PlayerCheckCollision(Vector2 tempPos)
+		{
+			return room.CollisionCheck((int)tempPos.X, (int)tempPos.Y, player.size, player.size);
+		}
+
 		/// <summary>
 		/// Shoots a laser through the current room.
 		/// </summary>

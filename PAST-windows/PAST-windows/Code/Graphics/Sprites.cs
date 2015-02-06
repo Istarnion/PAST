@@ -32,7 +32,10 @@ namespace PAST_windows.Code.Graphics
 			AddSprite("blueLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),		new Rectangle(8, 0, 8, 8)));
 			AddSprite("greenLaser",		new Sprite(content.Load<Texture2D>("sprites/lasers"),		new Rectangle(16, 0, 8, 8)));
 			AddSprite("debugBG",		new Sprite(content.Load<Texture2D>("sprites/debugBG"),		new Rectangle(0, 0, 1000, 1000)));
-			AddSprite("obstacle",		new Sprite(content.Load<Texture2D>("sprites/objects"),	new Rectangle(0, 0, 64, 64)));
+			AddSprite("obstacle",		new Sprite(content.Load<Texture2D>("sprites/objects"),		new Rectangle(0, 0, 64, 64)));
+			AddSprite("rLaser1",		new Sprite(content.Load<Texture2D>("sprites/redLaserHit"),	new Rectangle(0, 0, 20, 20)));
+			AddSprite("rLaser2",		new Sprite(content.Load<Texture2D>("sprites/redLaserHit"),	new Rectangle(20, 0, 20, 20)));
+			AddSprite("rLaser3",		new Sprite(content.Load<Texture2D>("sprites/redLaserHit"),	new Rectangle(20, 0, 20, 20)));
 		}
 
 		private void AddSprite(string key, Sprite s)

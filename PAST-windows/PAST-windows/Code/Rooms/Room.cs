@@ -56,7 +56,7 @@ namespace PAST_windows.Code.Rooms
 		/// Checks physical collision against anything in the room.
 		/// Should probably also be optimized with something like a quad tree.
 		/// </summary>
-		/// <param name="rect"></param>
+		/// <param name="go"></param>
 		/// <returns></returns>
 		public bool CollisionCheck(GameObject go)
 		{
@@ -71,6 +71,33 @@ namespace PAST_windows.Code.Rooms
 			foreach (GameObject g in gameObjects)
 			{
 				if (go.CollisionCheck(g)) return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Checks physical collision against anything in the room.
+		/// Should probably also be optimized with something like a quad tree.
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <param name="w"></param>
+		/// <param name="h"></param>
+		/// <returns></returns>
+		public bool CollisionCheck(int x, int y, int w, int h)
+		{
+			int halfWidth = w / 2;
+			int halfHeight = h / 2;
+			if (x - halfWidth < 0 || x + halfWidth > width
+				|| y - halfHeight < 0 || y + halfHeight > height)
+			{
+				return true;
+			}
+
+			foreach (GameObject g in gameObjects)
+			{
+				if (g.CollisionCheck(x, y, w, h)) return true;
 			}
 
 			return false;

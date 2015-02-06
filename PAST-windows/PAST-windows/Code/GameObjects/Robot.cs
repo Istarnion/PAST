@@ -24,6 +24,8 @@ namespace PAST_windows.Code.GameObjects
 		private Vector2 position;
 		private Vector2 velocity;
 
+		public int size { get; private set; }
+
 		private float acceleration = 0.7f;
 
 		private float drag = 0.7f;
@@ -44,6 +46,8 @@ namespace PAST_windows.Code.GameObjects
 			this.playState = ps;
 			laser = new Laser(LaserColor.RED);
 
+			size = 64;
+
 			turret = ServiceProvider.sprites.GetSprite("playerTurret");
 			belts = new Animation(new Sprite[] { ServiceProvider.sprites.GetSprite("playerBase_1"), ServiceProvider.sprites.GetSprite("playerBase_2") }, 0.033f);
 			this.input = input;
@@ -61,6 +65,10 @@ namespace PAST_windows.Code.GameObjects
 			{
 				velocity *= maxVelocity / velocity.Length();
 			}
+
+			Vector2 tempVel = new Vector2(velocity.X, 0);
+			if (playState.PlayerCheckCollision(position + tempVel))		velocity.X = 0;
+			if (playState.PlayerCheckCollision(position + velocity))	velocity.Y = 0;
 
 			position += velocity;
 
@@ -103,17 +111,17 @@ namespace PAST_windows.Code.GameObjects
 			Vector2 relPos = position - camOffset;
 
 			// Draw base
-			belts.CurrentFrame().Draw(batch, (int)relPos.X, (int)relPos.Y, 64, 64, moveDir);
+			belts.CurrentFrame().Draw(batch, (int)relPos.X, (int)relPos.Y, size, size, moveDir);
 
 			// Draw top
-			turret.Draw(batch, (int)relPos.X, (int)relPos.Y, 64, 64, aimDir);
+			turret.Draw(batch, (int)relPos.X, (int)relPos.Y, size, size, aimDir);
 		}
 
 		public void DrawBloomed(GameTime time, SpriteBatch batch, Vector2 camOffset)
 		{
 			if (laser.active)
 			{
-				laser.Draw(batch, camOffset);
+				laser.Draw(batch, camOffset, time);
 			}
 		}
 

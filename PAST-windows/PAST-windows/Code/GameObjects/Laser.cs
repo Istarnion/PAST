@@ -19,12 +19,26 @@ namespace PAST_windows.Code.GameObjects
 
 		private Vector2 endPoint = new Vector2(0, 0);
 
+		private Animation hitAnim;
+
+		private float animSpeed = 0.066f;
+
+		private float animRotSpeed = 0.01f;
+
+		private float hitAnimRotation = 0;
+
 		public Laser(LaserColor color)
 		{
 			switch(color)
 			{
 				case LaserColor.RED:
 					sprite = ServiceProvider.sprites.GetSprite("redLaser");
+					hitAnim = new Animation(
+						new Sprite[] {
+							ServiceProvider.sprites.GetSprite("rLaser1"),
+							ServiceProvider.sprites.GetSprite("rLaser2"),
+							ServiceProvider.sprites.GetSprite("rLaser3")
+						}, animSpeed);
 					break;
 				case LaserColor.BLUE:
 					sprite = ServiceProvider.sprites.GetSprite("blueLaser");
@@ -37,7 +51,7 @@ namespace PAST_windows.Code.GameObjects
 			}
 		}
 
-		public void Draw(SpriteBatch batch, Vector2 camOffset)
+		public void Draw(SpriteBatch batch, Vector2 camOffset, GameTime time)
 		{
 			if(startPoint.X == endPoint.X)	// If perfectly vertical
 			{
@@ -58,6 +72,11 @@ namespace PAST_windows.Code.GameObjects
 
 				sprite.Draw(batch, (int)((startPoint.X + dir.X * (length / 2)) - camOffset.X), (int)((startPoint.Y + dir.Y * (length / 2)) - camOffset.Y), 8, (int)length, angle);
 			}
+
+			Rectangle rect = hitAnim.CurrentFrame().GetRegion();
+			hitAnim.CurrentFrame().Draw(batch, (int)(endPoint.X-camOffset.X), (int)(endPoint.Y-camOffset.Y), rect.Width, rect.Height, hitAnimRotation);
+			hitAnimRotation += animRotSpeed;
+			hitAnim.Update(time);
 		}
 
 		public void SetStartPoint(Vector2 pos)
